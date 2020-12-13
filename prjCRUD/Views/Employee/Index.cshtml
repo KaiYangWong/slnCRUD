@@ -1,0 +1,59 @@
+﻿@model IEnumerable<prjCRUD.Models.Employee>
+
+@{
+    ViewBag.Title = "員工列表";
+}
+
+<h2>員工列表</h2>
+
+<p>@Html.ActionLink("員工新增", "Create")</p>
+
+@if (Model.Count() == 0)
+{
+    <p>無員工記錄</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpMail)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.EmpId
+                </td>
+                <td>
+                    @item.EmpName
+                </td>
+                <td>
+                    @item.EmpPhone
+                </td>
+                <td>
+                    @item.EmpMail
+                </td>
+                <td>
+                    @Html.ActionLink("刪除", "Delete", new { id = item.EmpId },
+                                                      new { @class = "btn btn-danger" })
+                    @Html.ActionLink("修改", "Edit", new { id = item.EmpId },
+                                                     new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+}
+
