@@ -17,5 +17,22 @@ namespace prjCRUD.Controllers
             return View(employee);
         }
 
+        //新增
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(string EmpName,string EmpPhone,string EmpMail)
+        {
+            Employee employee = new Employee();
+            employee.EmpName = EmpName;
+            employee.EmpPhone = EmpPhone;
+            employee.EmpMail = EmpMail;
+            db.Employee.Add(employee);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

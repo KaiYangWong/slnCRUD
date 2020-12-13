@@ -16,9 +16,7 @@ else
 {
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EmpId)
-            </th>
+          
             <th>
                 @Html.DisplayNameFor(model => model.EmpName)
             </th>
@@ -34,9 +32,7 @@ else
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @item.EmpId
-                </td>
+               
                 <td>
                     @item.EmpName
                 </td>
@@ -50,7 +46,7 @@ else
                     @Html.ActionLink("刪除", "Delete", new { id = item.EmpId },
                                                       new { @class = "btn btn-danger" })
                     @Html.ActionLink("修改", "Edit", new { id = item.EmpId },
-                                                     new { @class = "btn btn-danger" })
+                                                     new { @class = "btn btn-info" })
                 </td>
             </tr>
         }
