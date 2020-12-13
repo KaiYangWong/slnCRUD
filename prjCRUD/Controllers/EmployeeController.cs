@@ -17,7 +17,7 @@ namespace prjCRUD.Controllers
             return View(employee);
         }
 
-        //新增
+        //Create
         public ActionResult Create()
         {
             return View();
@@ -34,5 +34,41 @@ namespace prjCRUD.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //Edit
+        public ActionResult Edit(int Id)
+        {
+            var employee = db.Employee
+                             .Where(m => m.EmpId == Id)
+                             .FirstOrDefault();
+            return View(employee);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int Empid,string EmpName,string EmpPhone,string EmpMail)
+        {
+            var employee = db.Employee
+                             .Where(m => m.EmpId == Empid)
+                             .FirstOrDefault();
+            employee.EmpName = EmpName;
+            employee.EmpPhone = EmpPhone;
+            employee.EmpMail = EmpMail;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        //Delete
+        public ActionResult Delete(int EmpId)
+        {
+            var employee = db.Employee
+                             .Where(m => m.EmpId == EmpId)
+                             .FirstOrDefault();
+
+            db.Employee.Remove(employee);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
